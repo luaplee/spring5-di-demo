@@ -17,23 +17,23 @@ public class GreetingServiceConfig {
     @Bean
     @Primary
     @Profile("de")
-    GreetingService primaryGermanGreetingService(GreetingRepository greetingRepository) {
-        return new PrimaryGermanGreetingService(greetingRepository);
+    GreetingService primaryGermanGreetingService(GreetingServiceFactory greetingServiceFactory) {
+        return greetingServiceFactory.createGreetingService("de");
     }
 
 
     @Bean
     @Primary
     @Profile({"default", "en"})
-    GreetingService primaryGreetingService(GreetingRepository greetingRepository) {
-        return new PrimaryGreetingService(greetingRepository);
+    GreetingService primaryGreetingService(GreetingServiceFactory greetingServiceFactory) {
+        return greetingServiceFactory.createGreetingService("en");
     }
 
 
     @Bean
     @Primary
     @Profile("es")
-    GreetingService primarySpanishGreetingService(GreetingRepository greetingRepository) {
-        return new PrimarySpanishGreetingService(greetingRepository);
+    GreetingService primarySpanishGreetingService(GreetingServiceFactory greetingServiceFactory) {
+        return greetingServiceFactory.createGreetingService("es");
     }
 }
